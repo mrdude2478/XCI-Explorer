@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{89DBE891-22C7-40FF-A3D3-36F26224E09D}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>WinExe</OutputType>
+    <AssemblyName>XCI-Explorer</AssemblyName>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>XCI_Explorer</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>sss.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Be.Windows.Forms.HexBox, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Be.Windows.Forms.HexBox.1.6.1\lib\net40\Be.Windows.Forms.HexBox.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FluentFTP, Version=32.4.3.0, Culture=neutral, PublicKeyToken=f4af092b1d8df44f, processorArchitecture=MSIL">
+      <HintPath>packages\FluentFTP.32.4.3\lib\net45\FluentFTP.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.Core.1.0.113.1\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Games.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Games.Designer.cs">
+      <DependentUpon>Games.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MD5Check.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MD5Check.Designer.cs">
+      <DependentUpon>MD5Check.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="tabControl1\SelectedIndex.cs" />
+    <Compile Include="XCI_Explorer\CertForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XCI_Explorer\CertForm.Designer.cs">
+      <DependentUpon>CertForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XCI_Explorer.Helpers\BetterBinaryReader.cs" />
+    <Compile Include="XCI_Explorer.Helpers\BetterTreeNode.cs" />
+    <Compile Include="XCI_Explorer\Cheats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XCI_Explorer\Cheats.Designer.cs">
+      <DependentUpon>Cheats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XCI_Explorer\CNMT.cs" />
+    <Compile Include="XCI_Explorer\ComboItem.cs" />
+    <Compile Include="XCI_Explorer\Dictionary.cs" />
+    <Compile Include="XCI_Explorer\ftp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XCI_Explorer\ftp.Designer.cs">
+      <DependentUpon>ftp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XCI_Explorer\link_database.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XCI_Explorer\link_database.Designer.cs">
+      <DependentUpon>link_database.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XCI_Explorer\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XCI_Explorer\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XCI_Explorer\HFS0.cs" />
+    <Compile Include="XCI_Explorer\NACP.cs" />
+    <Compile Include="XCI_Explorer\NCA.cs" />
+    <Compile Include="XCI_Explorer\PFS0.cs" />
+    <Compile Include="XCI_Explorer\Program.cs" />
+    <Compile Include="XCI_Explorer\TreeViewFileSystem.cs" />
+    <Compile Include="XCI_Explorer\Util.cs" />
+    <Compile Include="XCI_Explorer\XCI.cs" />
+    <Compile Include="XTSSharp\RandomAccessSectorStream.cs" />
+    <Compile Include="XTSSharp\SectorStream.cs" />
+    <Compile Include="XTSSharp\Xts.cs" />
+    <Compile Include="XTSSharp\XtsAes128.cs" />
+    <Compile Include="XTSSharp\XtsAes256.cs" />
+    <Compile Include="XTSSharp\XtsCryptoTransform.cs" />
+    <Compile Include="XTSSharp\XtsSectorStream.cs" />
+    <Compile Include="XTSSharp\XtsStream.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Games.resx">
+      <DependentUpon>Games.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MD5Check.resx">
+      <DependentUpon>MD5Check.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XCI_Explorer\CertForm.resx">
+      <DependentUpon>CertForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XCI_Explorer\Cheats.resx">
+      <DependentUpon>Cheats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XCI_Explorer\ftp.resx">
+      <DependentUpon>ftp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XCI_Explorer\link_database.resx">
+      <DependentUpon>link_database.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XCI_Explorer\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Be.Windows.Forms.HexBox.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="sss.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets'))" />
+  </Target>
+</Project>
