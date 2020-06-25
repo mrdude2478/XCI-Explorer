@@ -32,6 +32,7 @@ Main Page | Database
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/)
 * System.Data.SQLite.Core (Nuget)
 * Be.Windows.Forms.HexBox (Nuget)
+* FluentFTP (Nuget)
 
 ## Build Instructions
 * Open **XCI Explorer.sln**
