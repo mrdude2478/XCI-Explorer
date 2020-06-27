@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cheats));
             this.listView1 = new System.Windows.Forms.ListView();
+            this.contextMenuStrip_ftp = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.fTPToSwitchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox_name = new System.Windows.Forms.TextBox();
             this.textBox_titleid = new System.Windows.Forms.TextBox();
             this.textBox_build = new System.Windows.Forms.TextBox();
@@ -65,12 +67,11 @@
             this.fTPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_clear = new System.Windows.Forms.Button();
-            this.contextMenuStrip_ftp = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.fTPToSwitchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fTPRemoveCheatFromSwitchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip_ftp.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.contextMenuStrip_ftp.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView1
@@ -85,6 +86,21 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // contextMenuStrip_ftp
+            // 
+            this.contextMenuStrip_ftp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fTPToSwitchToolStripMenuItem,
+            this.fTPRemoveCheatFromSwitchToolStripMenuItem});
+            this.contextMenuStrip_ftp.Name = "contextMenuStrip_ftp";
+            this.contextMenuStrip_ftp.Size = new System.Drawing.Size(236, 70);
+            // 
+            // fTPToSwitchToolStripMenuItem
+            // 
+            this.fTPToSwitchToolStripMenuItem.Name = "fTPToSwitchToolStripMenuItem";
+            this.fTPToSwitchToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.fTPToSwitchToolStripMenuItem.Text = "FTP copy cheat to Switch";
+            this.fTPToSwitchToolStripMenuItem.Click += new System.EventHandler(this.fTPToSwitchToolStripMenuItem_Click);
             // 
             // textBox_name
             // 
@@ -380,19 +396,12 @@
             this.button_clear.UseVisualStyleBackColor = true;
             this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
             // 
-            // contextMenuStrip_ftp
+            // fTPRemoveCheatFromSwitchToolStripMenuItem
             // 
-            this.contextMenuStrip_ftp.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fTPToSwitchToolStripMenuItem});
-            this.contextMenuStrip_ftp.Name = "contextMenuStrip_ftp";
-            this.contextMenuStrip_ftp.Size = new System.Drawing.Size(181, 48);
-            // 
-            // fTPToSwitchToolStripMenuItem
-            // 
-            this.fTPToSwitchToolStripMenuItem.Name = "fTPToSwitchToolStripMenuItem";
-            this.fTPToSwitchToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fTPToSwitchToolStripMenuItem.Text = "FTP to Switch";
-            this.fTPToSwitchToolStripMenuItem.Click += new System.EventHandler(this.fTPToSwitchToolStripMenuItem_Click);
+            this.fTPRemoveCheatFromSwitchToolStripMenuItem.Name = "fTPRemoveCheatFromSwitchToolStripMenuItem";
+            this.fTPRemoveCheatFromSwitchToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.fTPRemoveCheatFromSwitchToolStripMenuItem.Text = "FTP remove cheat from Switch";
+            this.fTPRemoveCheatFromSwitchToolStripMenuItem.Click += new System.EventHandler(this.fTPRemoveCheatFromSwitchToolStripMenuItem_Click);
             // 
             // Cheats
             // 
@@ -427,11 +436,11 @@
             this.Name = "Cheats";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cheat Database";
+            this.contextMenuStrip_ftp.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.contextMenuStrip2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.contextMenuStrip_ftp.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -476,5 +485,6 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_ftp;
         private System.Windows.Forms.ToolStripMenuItem fTPToSwitchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fTPRemoveCheatFromSwitchToolStripMenuItem;
     }
 }

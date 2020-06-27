@@ -154,9 +154,11 @@ namespace XCI_Explorer.XCI_Explorer
                 con.Open();
                 using var cmd = new SQLiteCommand(con);
 
-                string txt_name = textBox_name.Text;
+                string txt_name = (textBox_name.Text).Replace("'", "");
                 string txt_title = textBox_titleid.Text;
                 string txt_build = textBox_build.Text;
+                richTextBox_cheat.Text = richTextBox_cheat.Text.Replace("'", "");
+                richTextBox_notes.Text = richTextBox_notes.Text.Replace("'", "");
                 string txt_cheat = richTextBox_cheat.Text;
                 string txt_notes = richTextBox_notes.Text;
 
@@ -262,9 +264,11 @@ namespace XCI_Explorer.XCI_Explorer
                 con.Open();
                 using var cmd = new SQLiteCommand(con);
 
-                string txt_name = textBox_name.Text;
+                string txt_name = (textBox_name.Text).Replace("'", "");
                 string txt_title = textBox_titleid.Text;
                 string txt_build = textBox_build.Text;
+                richTextBox_cheat.Text = richTextBox_cheat.Text.Replace("'", "");
+                richTextBox_notes.Text = richTextBox_notes.Text.Replace("'", "");
                 string txt_cheat = richTextBox_cheat.Text;
                 string txt_notes = richTextBox_notes.Text;
 
@@ -913,14 +917,22 @@ namespace XCI_Explorer.XCI_Explorer
                     if (sx == "1" && atmos == "0")
                     {
                         upload_folder = ("sxos" + "/titles/" + txt_title);
+                        if (client.DirectoryExists(upload_folder) == true)
+                        {
+                            client.DeleteDirectory(upload_folder); //remove file first so we can update any new version.
+                        }
                         client.CreateDirectory(upload_folder);
-                        client.UploadDirectory(loader, upload_folder, FtpFolderSyncMode.Update);
+                        client.UploadDirectory(loader, upload_folder, FtpFolderSyncMode.Mirror);
                         cfw = "SXOS";
                     }
 
                     if (sx == "0" && atmos == "1")
                     {
                         upload_folder = ("atmosphere" + "/contents/" + txt_title);
+                        if (client.DirectoryExists(upload_folder) == true)
+                        {
+                            client.DeleteDirectory(upload_folder); //remove file first so we can update any new version.
+                        }
                         client.CreateDirectory(upload_folder);
                         client.UploadDirectory(loader, upload_folder, FtpFolderSyncMode.Update);
                         cfw = "AtmosphereNX";
@@ -929,10 +941,18 @@ namespace XCI_Explorer.XCI_Explorer
                     if (sx == "1" && atmos == "1")
                     {
                         upload_folder = ("sxos" + "/titles/" + txt_title);
+                        if (client.DirectoryExists(upload_folder) == true)
+                        {
+                            client.DeleteDirectory(upload_folder); //remove file first so we can update any new version.
+                        }
                         client.CreateDirectory(upload_folder);
                         client.UploadDirectory(loader, upload_folder, FtpFolderSyncMode.Update);
 
                         upload_folder = ("atmosphere" + "/contents/" + txt_title);
+                        if (client.DirectoryExists(upload_folder) == true)
+                        {
+                            client.DeleteDirectory(upload_folder); //remove file first so we can update any new version.
+                        }
                         client.CreateDirectory(upload_folder);
                         client.UploadDirectory(loader, upload_folder, FtpFolderSyncMode.Update);
                         cfw = "SXOS & AtmosphereNX";
@@ -957,9 +977,162 @@ namespace XCI_Explorer.XCI_Explorer
             }
         }
 
+        private void ftp_remove()
+        {
+            try
+            {
+                RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\XCI-Explorer");
+
+                //if reg key does exist, retrieve the stored values  
+                if (key != null)
+                {
+                    string upload_folder = "";
+                    string ip = ((string)key.GetValue("IP"));
+                    string port = ((string)key.GetValue("Port"));
+                    string sx = ((string)key.GetValue("SXOS"));
+                    string atmos = ((string)key.GetValue("Atmos"));
+                    key.Close();
+
+                    if (sx == "0" && atmos == "0")
+                    {
+                        MessageBox.Show("Open the FTP settings and choose a firmware to send the cheat to");
+                        return;
+                    }
+
+                    string txt_name = textBox_name.Text;
+                    string txt_title = textBox_titleid.Text;
+                    string txt_build = textBox_build.Text;
+                    string txt_cheat = richTextBox_cheat.Text;
+                    richTextBox_notes.Text = ""; //clear this so we can see what was sent later in program
+
+                    if (textBox_name.Text == "" || textBox_name.Text == String.Empty || textBox_name.TextLength == 0)
+                    {
+                        MessageBox.Show("Please enter a value in the Name box");
+                        return;
+                    }
+
+                    if (textBox_titleid.Text == "" || textBox_titleid.Text == String.Empty || textBox_titleid.TextLength == 0)
+                    {
+
+                        MessageBox.Show("Please enter a value in the Title ID box");
+                        return;
+                    }
+
+                    if (textBox_build.Text == "" || textBox_build.Text == String.Empty || textBox_build.TextLength == 0)
+                    {
+
+                        MessageBox.Show("Please enter a value in the Build ID box");
+                        return;
+                    }
+
+                    if (richTextBox_cheat.Text == "" || richTextBox_cheat.Text == String.Empty || richTextBox_cheat.TextLength == 0)
+                    {
+
+                        MessageBox.Show("Please enter a value in the Cheat box");
+                        return;
+                    }
+
+                    String folder = ($"tools{Path.DirectorySeparatorChar}/bin/cheats");
+                    String titlefold = ($"tools{Path.DirectorySeparatorChar}/bin/cheats/titles");
+                    
+                    //ftp guide: https://github.com/robinrodricks/FluentFTP/wiki
+
+                    string loader = (titlefold + "/" + txt_title).Replace("//", "\\");
+                    string cfw = "";
+
+                    var client = new FtpClient
+                    {
+                        Host = ip,
+                        Port = Int16.Parse(port),
+                        Credentials = new NetworkCredential("anonymous", "anonymous"),
+                    };
+
+                    client.ConnectTimeout = 1000;
+                    client.Connect();
+
+                    if (sx == "1" && atmos == "0")
+                    {
+                        upload_folder = ("sxos" + "/titles/" + txt_title);
+                        if (client.DirectoryExists(upload_folder) == true)
+                        {
+                            client.DeleteDirectory(upload_folder);
+                        }
+                        else
+                        {
+                            MessageBox.Show(txt_title + " does not exist - nothing to remove");
+                            return;
+                        }
+                        cfw = "SXOS";
+                    }
+
+                    if (sx == "0" && atmos == "1")
+                    {
+                        upload_folder = ("atmosphere" + "/contents/" + txt_title);
+                        if (client.DirectoryExists(upload_folder) == true)
+                        {
+                            client.DeleteDirectory(upload_folder);
+                        }
+                        else
+                        {
+                            MessageBox.Show(txt_title + " does not exist - nothing to remove");
+                            return;
+                        }
+                        cfw = "AtmosphereNX";
+                    }
+
+                    if (sx == "1" && atmos == "1")
+                    {
+                        upload_folder = ("sxos" + "/titles/" + txt_title);
+                        if (client.DirectoryExists(upload_folder) == true)
+                        {
+                            client.DeleteDirectory(upload_folder);
+                        }
+                        else
+                        {
+                            MessageBox.Show(txt_title + " does not exist - nothing to remove");
+                            return;
+                        }
+
+                        upload_folder = ("atmosphere" + "/contents/" + txt_title);
+                        if (client.DirectoryExists(upload_folder) == true)
+                        {
+                            client.DeleteDirectory(upload_folder);
+                        }
+                        else
+                        {
+                            MessageBox.Show(txt_title + " does not exist - nothing to remove");
+                            return;
+                        }
+                        cfw = "SXOS & AtmosphereNX";
+                    }
+
+                    string message = ("Connected to:" + ip + ":" + port + "\n\n" + "FTP System type: " + client.SystemType);
+                    message = (message + "\n\n" + "Cheat Removed: " + txt_name + " (" + txt_title + ")\n\n" + "Custom firmware selected: " + cfw);
+                    richTextBox_notes.Text = message;
+
+                    client.Disconnect();
+                }
+
+                else
+                {
+                    MessageBox.Show("Please enter some ftp settings first");
+                }
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show("Error: " + error.Message);
+            }
+        }
+
         private void fTPToSwitchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ftp();
+        }
+
+        private void fTPRemoveCheatFromSwitchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ftp_remove();
         }
     }
 }
