@@ -44,9 +44,7 @@ namespace XCI_Explorer.XCI_Explorer
             }
             else
             {
-                makedatabase();
-                comboBox1_additems();
-                //populatelist(); //use this if combobox is removed
+                MessageBox.Show("No database found", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
             }
         }
 
@@ -106,7 +104,7 @@ namespace XCI_Explorer.XCI_Explorer
                 con.Open();
                 using var cmd = new SQLiteCommand(stm, con);
                 string version = cmd.ExecuteScalar().ToString();
-                this.Text = ($"Link Database - Powered by SQLite version: {version}");
+                this.Text = ($"Website Database - Powered by SQLite version: {version}");
                 con.Close();
                 //end of test database
                 //makedatabase(); //create a test database
@@ -117,40 +115,6 @@ namespace XCI_Explorer.XCI_Explorer
                 MessageBox.Show("Error is: " + error.Message);
             }
 
-
-        }
-
-        static void makedatabase()
-        {
-            try
-            {
-                using var con = new SQLiteConnection(mydatabase);
-                con.Open();
-                using var cmd = new SQLiteCommand(con);
-
-                cmd.CommandText = "DROP TABLE IF EXISTS links";
-                cmd.ExecuteNonQuery();
-
-                cmd.CommandText = @"CREATE TABLE links(id INTEGER PRIMARY KEY ASC,
-                name TEXT, url TEXT, about TEXT)";
-                cmd.ExecuteNonQuery();
-
-                cmd.CommandText = "INSERT INTO links(name, url, about) VALUES('Google','https://www.google.co.uk','a search engine for nerds')";
-                cmd.ExecuteNonQuery();
-
-                cmd.CommandText = "INSERT INTO links(name, url, about) VALUES('test','http://test.com','xxx')";
-                cmd.ExecuteNonQuery();
-
-                cmd.CommandText = "DELETE FROM links WHERE ID = 2;";
-                cmd.ExecuteNonQuery();
-
-                con.Close();
-            }
-
-            catch (Exception error)
-            {
-                MessageBox.Show("Error is: " + error.Message);
-            }
 
         }
 
@@ -181,6 +145,7 @@ namespace XCI_Explorer.XCI_Explorer
 
                 else
                 {
+                    txt_name = (char.ToUpper(txt_name[0]) + txt_name.Substring(1)); //make first letter uppercase
                     cmd.CommandText = "INSERT INTO links(name, url, about) VALUES(@name, @url, @about)";
                     cmd.Parameters.AddWithValue("@name", txt_name);
                     cmd.Parameters.AddWithValue("@url", txt_url);
@@ -457,12 +422,6 @@ namespace XCI_Explorer.XCI_Explorer
                 MessageBox.Show("Error is: " + error.Message);
             }
         }
-    }
-
-    class select
-    {
-        public string Text { get; set; }
-        public string Value { get; set; }
     }
 
 }

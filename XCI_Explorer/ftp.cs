@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Win32;
 
 //ftp settings page - to store the ftp settings in the registry
 
@@ -30,7 +30,7 @@ namespace XCI_Explorer.XCI_Explorer
                 string port = "";
                 string sx = "";
                 string atmos = "";
-                
+
                 RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\XCI-Explorer");
 
                 //if it does exist, retrieve the stored values  

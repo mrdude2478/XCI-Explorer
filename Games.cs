@@ -4,11 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System;
+using System.Windows;
 
 namespace XCI_Explorer
 {
@@ -129,6 +132,8 @@ namespace XCI_Explorer
                 while (sqReader.Read())
                 {
                     string listname = (sqReader.GetString(1));
+                    //listname = listname.ToLower(); //make name lowercase
+                    listname = (char.ToUpper(listname[0]) + listname.Substring(1)); //make first letter uppercase
                     string listsize = (sqReader.GetString(2));
                     string listtitle = (sqReader.GetString(3));
                     string listrev = (sqReader.GetString(4));
@@ -222,6 +227,8 @@ namespace XCI_Explorer
                     while (sqReader.Read())
                     {
                         string listname = (sqReader.GetString(1));
+                        //listname = listname.ToLower(); //make name lowercase
+                        listname = (char.ToUpper(listname[0]) + listname.Substring(1)); //make first letter uppercase
                         string listsize = (sqReader.GetString(2));
                         string listtitle = (sqReader.GetString(3));
                         string listrev = (sqReader.GetString(4));
@@ -308,6 +315,8 @@ namespace XCI_Explorer
                 while (sqReader.Read())
                 {
                     string listname = (sqReader.GetString(1));
+                    //listname = listname.ToLower(); //make name lowercase
+                    listname = (char.ToUpper(listname[0]) + listname.Substring(1)); //make first letter uppercase
                     string listsize = (sqReader.GetString(2));
                     string listtitle = (sqReader.GetString(3));
                     string listrev = (sqReader.GetString(4));
@@ -480,6 +489,23 @@ namespace XCI_Explorer
             }
         }
 
+        private void button1_Click(object sender, EventArgs e) //start impementing print feature - finish this later
+        {
+            PrintDocument PrintDocument = new PrintDocument();
+            PrintDocument.PrintPage += (object sender, PrintPageEventArgs e) =>
+            {
+                Font font = new Font("Arial", 12);
+                float offset = e.MarginBounds.Top;
+                foreach (ListViewItem Item in listView1.Items)
+                {
+                    // The 5.0f is to add a small space between lines
+                    offset += (font.GetHeight() + 5.0f);
+                    PointF location = new System.Drawing.PointF(e.MarginBounds.Left, offset);
+                    e.Graphics.DrawString(Item.Text, font, Brushes.Black, location);
+                }
+            };
+            PrintDocument.Print();
+        }
     }
 
     // class added to store data for the combobox

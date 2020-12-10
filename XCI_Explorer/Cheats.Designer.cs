@@ -33,6 +33,7 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.contextMenuStrip_ftp = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.fTPToSwitchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fTPRemoveCheatFromSwitchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox_name = new System.Windows.Forms.TextBox();
             this.textBox_titleid = new System.Windows.Forms.TextBox();
             this.textBox_build = new System.Windows.Forms.TextBox();
@@ -60,14 +61,13 @@
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cheatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.maxCheatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.werWolvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cheatslipsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exploreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.binFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fTPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_clear = new System.Windows.Forms.Button();
-            this.fTPRemoveCheatFromSwitchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip_ftp.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -93,7 +93,7 @@
             this.fTPToSwitchToolStripMenuItem,
             this.fTPRemoveCheatFromSwitchToolStripMenuItem});
             this.contextMenuStrip_ftp.Name = "contextMenuStrip_ftp";
-            this.contextMenuStrip_ftp.Size = new System.Drawing.Size(236, 70);
+            this.contextMenuStrip_ftp.Size = new System.Drawing.Size(236, 48);
             // 
             // fTPToSwitchToolStripMenuItem
             // 
@@ -101,6 +101,13 @@
             this.fTPToSwitchToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.fTPToSwitchToolStripMenuItem.Text = "FTP copy cheat to Switch";
             this.fTPToSwitchToolStripMenuItem.Click += new System.EventHandler(this.fTPToSwitchToolStripMenuItem_Click);
+            // 
+            // fTPRemoveCheatFromSwitchToolStripMenuItem
+            // 
+            this.fTPRemoveCheatFromSwitchToolStripMenuItem.Name = "fTPRemoveCheatFromSwitchToolStripMenuItem";
+            this.fTPRemoveCheatFromSwitchToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.fTPRemoveCheatFromSwitchToolStripMenuItem.Text = "FTP remove cheat from Switch";
+            this.fTPRemoveCheatFromSwitchToolStripMenuItem.Click += new System.EventHandler(this.fTPRemoveCheatFromSwitchToolStripMenuItem_Click);
             // 
             // textBox_name
             // 
@@ -336,25 +343,25 @@
             // cheatsToolStripMenuItem
             // 
             this.cheatsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.maxCheatsToolStripMenuItem,
-            this.werWolvToolStripMenuItem});
+            this.werWolvToolStripMenuItem,
+            this.cheatslipsToolStripMenuItem});
             this.cheatsToolStripMenuItem.Name = "cheatsToolStripMenuItem";
             this.cheatsToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.cheatsToolStripMenuItem.Text = "Cheats";
             // 
-            // maxCheatsToolStripMenuItem
-            // 
-            this.maxCheatsToolStripMenuItem.Name = "maxCheatsToolStripMenuItem";
-            this.maxCheatsToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.maxCheatsToolStripMenuItem.Text = "MaxCheats";
-            this.maxCheatsToolStripMenuItem.Click += new System.EventHandler(this.maxCheatsToolStripMenuItem_Click);
-            // 
             // werWolvToolStripMenuItem
             // 
             this.werWolvToolStripMenuItem.Name = "werWolvToolStripMenuItem";
-            this.werWolvToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.werWolvToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.werWolvToolStripMenuItem.Text = "WerWolv";
             this.werWolvToolStripMenuItem.Click += new System.EventHandler(this.werWolvToolStripMenuItem_Click);
+            // 
+            // cheatslipsToolStripMenuItem
+            // 
+            this.cheatslipsToolStripMenuItem.Name = "cheatslipsToolStripMenuItem";
+            this.cheatslipsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cheatslipsToolStripMenuItem.Text = "Cheatslips";
+            this.cheatslipsToolStripMenuItem.Click += new System.EventHandler(this.cheatslipsToolStripMenuItem_Click);
             // 
             // exploreToolStripMenuItem
             // 
@@ -395,13 +402,6 @@
             this.button_clear.Text = "Clear";
             this.button_clear.UseVisualStyleBackColor = true;
             this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
-            // 
-            // fTPRemoveCheatFromSwitchToolStripMenuItem
-            // 
-            this.fTPRemoveCheatFromSwitchToolStripMenuItem.Name = "fTPRemoveCheatFromSwitchToolStripMenuItem";
-            this.fTPRemoveCheatFromSwitchToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.fTPRemoveCheatFromSwitchToolStripMenuItem.Text = "FTP remove cheat from Switch";
-            this.fTPRemoveCheatFromSwitchToolStripMenuItem.Click += new System.EventHandler(this.fTPRemoveCheatFromSwitchToolStripMenuItem_Click);
             // 
             // Cheats
             // 
@@ -476,7 +476,6 @@
         private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cheatsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem maxCheatsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem werWolvToolStripMenuItem;
         private System.Windows.Forms.Button button_clear;
         private System.Windows.Forms.ToolStripMenuItem exploreToolStripMenuItem;
@@ -486,5 +485,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip_ftp;
         private System.Windows.Forms.ToolStripMenuItem fTPToSwitchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fTPRemoveCheatFromSwitchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cheatslipsToolStripMenuItem;
     }
 }

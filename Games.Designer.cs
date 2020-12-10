@@ -44,6 +44,7 @@
             this.label_Search = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button_clear = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,7 +113,7 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.Location = new System.Drawing.Point(407, 7);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(192, 21);
+            this.comboBox1.Size = new System.Drawing.Size(193, 21);
             this.comboBox1.TabIndex = 1;
             this.toolTip1.SetToolTip(this.comboBox1, "Sort database");
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
@@ -169,12 +170,25 @@
             this.button_clear.UseVisualStyleBackColor = true;
             this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
             // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(6, 324);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(28, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "P";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Games
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.ClientSize = new System.Drawing.Size(608, 353);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button_clear);
             this.Controls.Add(this.label_Search);
             this.Controls.Add(this.textBox_Search);
@@ -210,5 +224,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button button_clear;
         private System.Windows.Forms.ToolStripMenuItem tinfoilToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -56,15 +56,10 @@ namespace XCI_Explorer
         public MainForm()
         {
             InitializeComponent();
-
-            if (!File.Exists(mydb))
-            {
-                makedatabase();
-            }
-
+            makedatabase(); //make database tables if they are missing.
             comboBox1_additems();
 
-            this.Text = "XCI Explorer v" + getAssemblyVersion() + "b (Mod)";
+            this.Text = "XCI Explorer v" + getAssemblyVersion() + "d (Mod)";
             tabControl1.Controls.Remove(Partitions); //disable partitions tab
             tabControl1.Controls.Remove(nxci);//disable 4nxci
             tabControl1.Controls.Remove(ReKey);//disable 4nxci
@@ -1566,8 +1561,9 @@ namespace XCI_Explorer
             string myText = TB_Name.Text;
             if (!String.IsNullOrEmpty(myText))
             {
-                string mynewText = myText.Replace(":", ""); //remove spaces
+                string mynewText = myText.Replace(":", "").Replace("*", "").Replace("?", "").Replace("/", "").Replace("|", "").Replace("<", "").Replace(">", "").Replace("\\", "").Replace("\"", ""); //remove illegal char names on windows
                 string mynewText2 = (mynewText);
+                mynewText2 = (char.ToUpper(mynewText2[0]) + mynewText2.Substring(1)); //make first letter uppercase
                 string extension;
                 string fullPath;
                 string filename;
@@ -2198,49 +2194,12 @@ namespace XCI_Explorer
 
         }
 
-        private void sAKToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                if (!File.Exists($"tools{Path.DirectorySeparatorChar}/SAK.exe"))
-                {
-                    if (MessageBox.Show("SAK.exe is missing.\n\nDo you want to visit the release thread?", "Missing File?", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        string url = "https://psxtools.de/index.php/Thread/77281-TOOL-Switch-Army-Knife-SAK-by-kempa/?s=bc9464ce9a59598f8988aca4b478aea0a80d8221";
-
-                        System.Diagnostics.Process proc = new System.Diagnostics.Process();
-
-                        System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo(url);
-
-                        proc.StartInfo = startInfo;
-
-                        proc.Start();
-                    }
-                }
-
-                else
-                {
-                    Process myProcess = new Process();
-                    String exeName = $"tools{Path.DirectorySeparatorChar}/SAK.exe";
-                    myProcess.StartInfo.WorkingDirectory = "tools";
-                    myProcess.StartInfo.FileName = exeName;
-                    myProcess.StartInfo.UseShellExecute = false;
-                    myProcess.Start();
-                }
-            }
-
-            catch (Exception error)
-            {
-                MessageBox.Show("Error is: " + error.Message);
-            }
-        }
-
         private void toolsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            string mydir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo()
             {
-                FileName = "tools",
+                FileName = mydir,
                 UseShellExecute = true,
                 Verb = "open"
             });
@@ -2254,43 +2213,6 @@ namespace XCI_Explorer
                 UseShellExecute = true,
                 Verb = "open"
             });
-        }
-
-        private void fat32FormatToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                if (!File.Exists($"tools{Path.DirectorySeparatorChar}/bin/guiformat.exe"))
-                {
-                    if (MessageBox.Show("guiformat.exe is missing.\n\nDo you want to visit the release page?", "Missing File?", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        string url = "http://www.ridgecrop.demon.co.uk/index.htm?guiformat.htm";
-
-                        System.Diagnostics.Process proc = new System.Diagnostics.Process();
-
-                        System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo(url);
-
-                        proc.StartInfo = startInfo;
-
-                        proc.Start();
-                    }
-                }
-
-                else
-                {
-                    Process myProcess = new Process();
-                    String exeName = $"tools{Path.DirectorySeparatorChar}/bin/guiformat.exe";
-                    myProcess.StartInfo.FileName = exeName;
-                    myProcess.StartInfo.UseShellExecute = false;
-                    myProcess.Start();
-                }
-            }
-
-            catch (Exception error)
-            {
-                MessageBox.Show("Error is: " + error.Message);
-            }
         }
 
         private void loadGameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2533,38 +2455,6 @@ namespace XCI_Explorer
             System.Diagnostics.Process.Start("tools\\bin\\aes-tool\\crypto.html");
         }
 
-        private void linksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Form database = new linkdb();
-                this.Hide();
-                database.ShowDialog();
-                this.Show();
-            }
-
-            catch (Exception error)
-            {
-                MessageBox.Show("Error is: " + error.Message);
-            }
-        }
-
-        private void gamesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Form Games = new Games();
-                this.Hide();
-                Games.ShowDialog();
-                this.Show();
-            }
-
-            catch (Exception error)
-            {
-                MessageBox.Show("Error is: " + error.Message);
-            }
-        }
-
         public void MouseHover(object sender, EventArgs e)
         {
             comboBox1_additems();
@@ -2584,7 +2474,10 @@ namespace XCI_Explorer
                 cmd.CommandText = @"CREATE TABLE IF NOT EXISTS cheats(id INTEGER PRIMARY KEY ASC, name TEXT, titleid TEXT, build TEXT, cheat TEXT, notes TEXT)";
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandText = @"CREATE TABLE links(id INTEGER PRIMARY KEY ASC, name TEXT, url TEXT, about TEXT)";
+                cmd.CommandText = @"CREATE TABLE IF NOT EXISTS links(id INTEGER PRIMARY KEY ASC, name TEXT, url TEXT, about TEXT)";
+                cmd.ExecuteNonQuery();
+
+                cmd.CommandText = @"CREATE TABLE IF NOT EXISTS Programs(id INTEGER PRIMARY KEY ASC, name TEXT, url TEXT, about TEXT)";
                 cmd.ExecuteNonQuery();
 
                 con.Close();
@@ -2610,7 +2503,8 @@ namespace XCI_Explorer
             try
             {
                 //test if name string is empty (dlc)
-                string game_name = TB_Name.Text;
+                string game_name = TB_Name.Text.ToLower(); //make the string lower case
+                game_name = (char.ToUpper(game_name[0]) + game_name.Substring(1)); //make first letter uppercase
                 string game_size = TB_ROMSize.Text;
                 string game_id = TB_TID.Text;
                 string game_rev = TB_GameRev.Text;
@@ -2685,12 +2579,117 @@ namespace XCI_Explorer
             }
         }
 
-        private void cheatsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void gamesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form Cheats = new Cheats();
-            this.Hide();
-            Cheats.ShowDialog();
-            this.Show();
+            try
+            {
+                Form Games = new Games();
+                this.Hide();
+                Games.ShowDialog();
+                this.Show();
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show("Error is: " + error.Message);
+            }
+        }
+
+        private void websitesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Form database = new linkdb();
+                this.Hide();
+                database.ShowDialog();
+                this.Show();
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show("Error is: " + error.Message);
+            }
+        }
+
+        private void cheatsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Form Cheats = new Cheats();
+                this.Hide();
+                Cheats.ShowDialog();
+                this.Show();
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show("Error is: " + error.Message);
+            }
+        }
+
+        private void gamesToolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                Form Games = new Games();
+                this.Hide();
+                Games.ShowDialog();
+                this.Show();
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show("Error is: " + error.Message);
+            }
+        }
+
+        private void cheatsToolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                Form Cheats = new Cheats();
+                this.Hide();
+                Cheats.ShowDialog();
+                this.Show();
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show("Error is: " + error.Message);
+            }
+
+        }
+
+        private void websitesToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                Form database = new linkdb();
+                this.Hide();
+                database.ShowDialog();
+                this.Show();
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show("Error is: " + error.Message);
+            }
+        }
+
+        private void programsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Form Programs = new Programs();
+                this.Hide();
+                Programs.ShowDialog();
+                this.Show();
+            }
+
+            catch (Exception error)
+            {
+                MessageBox.Show("Error is: " + error.Message);
+            }
         }
     }
 

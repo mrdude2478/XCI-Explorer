@@ -1,13 +1,13 @@
-﻿using System;
+﻿using FluentFTP;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
-using FluentFTP;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using Microsoft.Win32;
 
 namespace XCI_Explorer.XCI_Explorer
 {
@@ -490,19 +490,6 @@ namespace XCI_Explorer.XCI_Explorer
             public string Value { get; set; }
         }
 
-        private void maxCheatsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start("https://www.max-cheats.com/");
-            }
-
-            catch
-            {
-                MessageBox.Show("Unable to open link");
-            }
-        }
-
         private void werWolvToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -909,7 +896,7 @@ namespace XCI_Explorer.XCI_Explorer
                         Host = ip,
                         Port = Int16.Parse(port),
                         Credentials = new NetworkCredential("anonymous", "anonymous"),
-                };
+                    };
 
                     client.ConnectTimeout = 1000;
                     client.Connect();
@@ -959,7 +946,7 @@ namespace XCI_Explorer.XCI_Explorer
                     }
 
                     string message = ("Connected to:" + ip + ":" + port + "\n\n" + "FTP System type: " + client.SystemType);
-                    message = (message + "\n\n" + "Cheat Uploaded: " + txt_name + " (" + txt_title + ")\n\n" + "Custom firmware selected: " + cfw) ;
+                    message = (message + "\n\n" + "Cheat Uploaded: " + txt_name + " (" + txt_title + ")\n\n" + "Custom firmware selected: " + cfw);
                     richTextBox_notes.Text = message;
 
                     client.Disconnect();
@@ -1034,7 +1021,7 @@ namespace XCI_Explorer.XCI_Explorer
 
                     String folder = ($"tools{Path.DirectorySeparatorChar}/bin/cheats");
                     String titlefold = ($"tools{Path.DirectorySeparatorChar}/bin/cheats/titles");
-                    
+
                     //ftp guide: https://github.com/robinrodricks/FluentFTP/wiki
 
                     string loader = (titlefold + "/" + txt_title).Replace("//", "\\");
@@ -1133,6 +1120,19 @@ namespace XCI_Explorer.XCI_Explorer
         private void fTPRemoveCheatFromSwitchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ftp_remove();
+        }
+
+        private void cheatslipsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("https://www.cheatslips.com/");
+            }
+
+            catch
+            {
+                MessageBox.Show("Unable to open link");
+            }
         }
     }
 }

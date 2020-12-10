@@ -59,22 +59,22 @@ namespace XCI_Explorer
                     {
                         if (!fullPath.Equals(""))
                         {
-                                string output = "";
-                                //byte[] checksum = md5.ComputeHash(keyfile);
-                                byte[] checksum = md5.ComputeHash(bufferedStream);
-                                output = BitConverter.ToString(checksum).Replace("-", String.Empty).ToLower();
-                                string myval = (output);
-                                SetValueForMD5 = myval;
+                            string output = "";
+                            //byte[] checksum = md5.ComputeHash(keyfile);
+                            byte[] checksum = md5.ComputeHash(bufferedStream);
+                            output = BitConverter.ToString(checksum).Replace("-", String.Empty).ToLower();
+                            string myval = (output);
+                            SetValueForMD5 = myval;
 
-                                //Use this code if we want SHA256 values instead of MDA - we can also use a buffer.
-                                /*
-                                string output = "";
-                                var sha = new SHA256Managed();
-                                byte[] checksum = sha.ComputeHash(bufferedStream);
-                                output = BitConverter.ToString(checksum).Replace("-", String.Empty);
-                                string myval = (output);
-                                SetValueForMD5 = myval;
-                                */
+                            //Use this code if we want SHA256 values instead of MDA - we can also use a buffer.
+                            /*
+                            string output = "";
+                            var sha = new SHA256Managed();
+                            byte[] checksum = sha.ComputeHash(bufferedStream);
+                            output = BitConverter.ToString(checksum).Replace("-", String.Empty);
+                            string myval = (output);
+                            SetValueForMD5 = myval;
+                            */
                         }
                         else
                         {

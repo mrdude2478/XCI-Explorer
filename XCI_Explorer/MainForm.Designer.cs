@@ -123,22 +123,21 @@ namespace XCI_Explorer
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.loadGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sAKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fat32FormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aESToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.databaseStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cheatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exploreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.binToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.databaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gamesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cheatsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.websitesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.programsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.certToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exploreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.binToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PB_GameIcon)).BeginInit();
@@ -1070,8 +1069,9 @@ namespace XCI_Explorer
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loadGameToolStripMenuItem,
             this.toolsToolStripMenuItem,
-            this.exploreToolStripMenuItem,
-            this.certToolStripMenuItem});
+            this.databaseToolStripMenuItem,
+            this.certToolStripMenuItem,
+            this.exploreToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(608, 24);
@@ -1092,96 +1092,64 @@ namespace XCI_Explorer
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sAKToolStripMenuItem,
-            this.fat32FormatToolStripMenuItem,
-            this.toolStripSeparator1,
             this.aESToolToolStripMenuItem,
-            this.databaseStripMenuItem});
+            this.toolStripSeparator1});
             this.toolsToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
-            // sAKToolStripMenuItem
+            // aESToolToolStripMenuItem
             // 
-            this.sAKToolStripMenuItem.Name = "sAKToolStripMenuItem";
-            this.sAKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sAKToolStripMenuItem.Text = "SAK";
-            this.sAKToolStripMenuItem.Click += new System.EventHandler(this.sAKToolStripMenuItem_Click);
-            // 
-            // fat32FormatToolStripMenuItem
-            // 
-            this.fat32FormatToolStripMenuItem.Name = "fat32FormatToolStripMenuItem";
-            this.fat32FormatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.fat32FormatToolStripMenuItem.Text = "Fat32 Format";
-            this.fat32FormatToolStripMenuItem.Click += new System.EventHandler(this.fat32FormatToolStripMenuItem_Click);
+            this.aESToolToolStripMenuItem.Name = "aESToolToolStripMenuItem";
+            this.aESToolToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.aESToolToolStripMenuItem.Text = "Cobra Crypt";
+            this.aESToolToolStripMenuItem.Click += new System.EventHandler(this.aESToolToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(135, 6);
+            this.toolStripSeparator1.Visible = false;
             // 
-            // aESToolToolStripMenuItem
+            // databaseToolStripMenuItem
             // 
-            this.aESToolToolStripMenuItem.Name = "aESToolToolStripMenuItem";
-            this.aESToolToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aESToolToolStripMenuItem.Text = "Cobra Crypt";
-            this.aESToolToolStripMenuItem.Click += new System.EventHandler(this.aESToolToolStripMenuItem_Click);
+            this.databaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gamesToolStripMenuItem1,
+            this.cheatsToolStripMenuItem1,
+            this.websitesToolStripMenuItem,
+            this.programsToolStripMenuItem});
+            this.databaseToolStripMenuItem.Name = "databaseToolStripMenuItem";
+            this.databaseToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.databaseToolStripMenuItem.Text = "Database";
             // 
-            // databaseStripMenuItem
+            // gamesToolStripMenuItem1
             // 
-            this.databaseStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gamesToolStripMenuItem,
-            this.linksToolStripMenuItem,
-            this.cheatsToolStripMenuItem});
-            this.databaseStripMenuItem.Name = "databaseStripMenuItem";
-            this.databaseStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.databaseStripMenuItem.Text = "Database";
+            this.gamesToolStripMenuItem1.Name = "gamesToolStripMenuItem1";
+            this.gamesToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
+            this.gamesToolStripMenuItem1.Text = "Games";
+            this.gamesToolStripMenuItem1.Click += new System.EventHandler(this.gamesToolStripMenuItem1_Click_1);
             // 
-            // cheatsToolStripMenuItem
+            // cheatsToolStripMenuItem1
             // 
-            this.cheatsToolStripMenuItem.Name = "cheatsToolStripMenuItem";
-            this.cheatsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cheatsToolStripMenuItem.Text = "Cheats";
-            this.cheatsToolStripMenuItem.Click += new System.EventHandler(this.cheatsToolStripMenuItem_Click);
+            this.cheatsToolStripMenuItem1.Name = "cheatsToolStripMenuItem1";
+            this.cheatsToolStripMenuItem1.Size = new System.Drawing.Size(125, 22);
+            this.cheatsToolStripMenuItem1.Text = "Cheats";
+            this.cheatsToolStripMenuItem1.Click += new System.EventHandler(this.cheatsToolStripMenuItem1_Click_1);
             // 
-            // gamesToolStripMenuItem
+            // websitesToolStripMenuItem
             // 
-            this.gamesToolStripMenuItem.Name = "gamesToolStripMenuItem";
-            this.gamesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gamesToolStripMenuItem.Text = "Games";
-            this.gamesToolStripMenuItem.Click += new System.EventHandler(this.gamesToolStripMenuItem_Click);
+            this.websitesToolStripMenuItem.Name = "websitesToolStripMenuItem";
+            this.websitesToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.websitesToolStripMenuItem.Text = "Websites";
+            this.websitesToolStripMenuItem.Click += new System.EventHandler(this.websitesToolStripMenuItem_Click_1);
             // 
-            // linksToolStripMenuItem
+            // programsToolStripMenuItem
             // 
-            this.linksToolStripMenuItem.Name = "linksToolStripMenuItem";
-            this.linksToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.linksToolStripMenuItem.Text = "Links";
-            this.linksToolStripMenuItem.Click += new System.EventHandler(this.linksToolStripMenuItem_Click);
-            // 
-            // exploreToolStripMenuItem
-            // 
-            this.exploreToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolsToolStripMenuItem1,
-            this.binToolStripMenuItem});
-            this.exploreToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.exploreToolStripMenuItem.Name = "exploreToolStripMenuItem";
-            this.exploreToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.exploreToolStripMenuItem.Text = "Explore";
-            // 
-            // toolsToolStripMenuItem1
-            // 
-            this.toolsToolStripMenuItem1.Name = "toolsToolStripMenuItem1";
-            this.toolsToolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
-            this.toolsToolStripMenuItem1.Text = "Tools";
-            this.toolsToolStripMenuItem1.Click += new System.EventHandler(this.toolsToolStripMenuItem1_Click);
-            // 
-            // binToolStripMenuItem
-            // 
-            this.binToolStripMenuItem.Name = "binToolStripMenuItem";
-            this.binToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
-            this.binToolStripMenuItem.Text = "Bin";
-            this.binToolStripMenuItem.Click += new System.EventHandler(this.binToolStripMenuItem_Click);
+            this.programsToolStripMenuItem.Name = "programsToolStripMenuItem";
+            this.programsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.programsToolStripMenuItem.Text = "Programs";
+            this.programsToolStripMenuItem.Click += new System.EventHandler(this.programsToolStripMenuItem_Click);
             // 
             // certToolStripMenuItem
             // 
@@ -1221,6 +1189,30 @@ namespace XCI_Explorer
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.viewToolStripMenuItem.Text = "View";
             this.viewToolStripMenuItem.Click += new System.EventHandler(this.viewToolStripMenuItem_Click);
+            // 
+            // exploreToolStripMenuItem
+            // 
+            this.exploreToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolsToolStripMenuItem1,
+            this.binToolStripMenuItem});
+            this.exploreToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.exploreToolStripMenuItem.Name = "exploreToolStripMenuItem";
+            this.exploreToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.exploreToolStripMenuItem.Text = "Explore";
+            // 
+            // toolsToolStripMenuItem1
+            // 
+            this.toolsToolStripMenuItem1.Name = "toolsToolStripMenuItem1";
+            this.toolsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolsToolStripMenuItem1.Text = "Program";
+            this.toolsToolStripMenuItem1.Click += new System.EventHandler(this.toolsToolStripMenuItem1_Click);
+            // 
+            // binToolStripMenuItem
+            // 
+            this.binToolStripMenuItem.Name = "binToolStripMenuItem";
+            this.binToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.binToolStripMenuItem.Text = "Bin";
+            this.binToolStripMenuItem.Click += new System.EventHandler(this.binToolStripMenuItem_Click);
             // 
             // comboBox1
             // 
@@ -1380,11 +1372,9 @@ namespace XCI_Explorer
         private CheckBox checkBox_sxos;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem toolsToolStripMenuItem;
-        private ToolStripMenuItem sAKToolStripMenuItem;
         private ToolStripMenuItem exploreToolStripMenuItem;
         private ToolStripMenuItem toolsToolStripMenuItem1;
         private ToolStripMenuItem binToolStripMenuItem;
-        private ToolStripMenuItem fat32FormatToolStripMenuItem;
         private ToolStripMenuItem loadGameToolStripMenuItem;
         private PictureBox PB_GameIcon;
         private ToolStripMenuItem certToolStripMenuItem;
@@ -1398,10 +1388,11 @@ namespace XCI_Explorer
         private ComboBox comboBox1;
         private ToolStripMenuItem aESToolToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripMenuItem databaseStripMenuItem;
-        private ToolStripMenuItem linksToolStripMenuItem;
-        private ToolStripMenuItem gamesToolStripMenuItem;
         private Button button_add_DB;
-        private ToolStripMenuItem cheatsToolStripMenuItem;
+        private ToolStripMenuItem databaseToolStripMenuItem;
+        private ToolStripMenuItem gamesToolStripMenuItem1;
+        private ToolStripMenuItem cheatsToolStripMenuItem1;
+        private ToolStripMenuItem websitesToolStripMenuItem;
+        private ToolStripMenuItem programsToolStripMenuItem;
     }
 }
