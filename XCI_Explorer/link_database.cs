@@ -145,6 +145,13 @@ namespace XCI_Explorer.XCI_Explorer
 
                 else
                 {
+                    string http = "http";
+                    bool b = txt_url.Contains(http); //return true if string contians http. 
+                    if (!b)
+                    {
+                        txt_url = (http + "://" + txt_url); //add http if it's missing.
+                    }
+                    
                     txt_name = (char.ToUpper(txt_name[0]) + txt_name.Substring(1)); //make first letter uppercase
                     cmd.CommandText = "INSERT INTO links(name, url, about) VALUES(@name, @url, @about)";
                     cmd.Parameters.AddWithValue("@name", txt_name);
