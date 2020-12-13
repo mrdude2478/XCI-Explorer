@@ -205,6 +205,13 @@ namespace XCI_Explorer.XCI_Explorer
                     if (listView1.SelectedItems.Count == 0)
                         return;
 
+                    string http = "http";
+                    bool b = txt_url.Contains(http); //return true if string contians http. 
+                    if (!b)
+                    {
+                        txt_url = (http + "://" + txt_url); //add http if it's missing.
+                    }
+
                     if (MessageBox.Show("Update " + txt_name + " on the database?", "Update!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         ListViewItem item = listView1.SelectedItems[0];
